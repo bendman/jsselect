@@ -1,6 +1,8 @@
 /*\
  *  --------------------------------
  *  jQuery JS Select Plugin
+ *  
+ *  https://github.com/bendman/jsselect
  *  --------------------------------
  *  + Plugin boilerplate derived from work by @ajpiano and @addyosmani
  *  + This plugin written by Ben Duncan.
@@ -18,24 +20,22 @@
 	}
 
 	Plugin.prototype.init = function() {
-		var newSelect,
+		var newSelect = '<div class="jsselect"><div class="showSelect"></div>',
 			newOptions = '<ul class="jsSelectOpts">',
 			self = this,
+			current;
 			$el = $(this.element);
 
-		newSelect = '<div class="jsselect">';
 		$el.find('option').each(function() {
-			var classes = this.className;
-			if ($(this).is(':selected')) {
-				classes += ' selected';
-				newOptions = '<div class="showSelect">' + this.innerHTML + '</div>' + newOptions;
-			}
+			var classes = this.className, value;
+			if ($(this).is(':selected')) classes += ' selected', current = this.value;
 			newOptions += '<li class="jsSelectOpt ' + classes + '" data-value="' + this.value + '">' + this.innerHTML + '</li>';
 		});
 		newSelect += newOptions + '</ul></div>';
 
 		self.$newEl = $(newSelect);
 		self.$opts = self.$newEl.find('.jsSelectOpts');
+		self.renderChoice(current);
 		self.$current = self.$newEl.find('.selected');
 		self.$newEl.attr('tabindex', 0)
 			.bind('blur', function() {
@@ -73,10 +73,12 @@
 	};
 
 	Plugin.prototype.renderChoice = function(value) {
-		var newDisplay = this.$newEl.find('.selected').removeClass('selected')
-			.end().find('[data-value="'+value+'"]').addClass('selected').html();
+		var $newSelected = this.$newEl.find('.selected').removeClass('selected')
+			.end().find('[data-value="'+value+'"]'),
+			newHtml = $newSelected.addClass('selected').html(),
+			newClasses = 'showSelect ' + $newSelected[0].className;
 
-		this.$newEl.find('>div').html(newDisplay);
+		this.$newEl.find('>div').attr('class', newClasses).html(newHtml);
 	};
 
 	Plugin.prototype.show = function() {
