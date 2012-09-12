@@ -1,7 +1,7 @@
 /*\
  *  --------------------------------
  *  jQuery JS Select Plugin
- *  
+ *  version: 0.9
  *  https://github.com/bendman/jsselect
  *  --------------------------------
  *  + Plugin boilerplate derived from work by @ajpiano and @addyosmani
