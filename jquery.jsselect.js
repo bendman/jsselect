@@ -35,8 +35,8 @@
 
 		self.$newEl = $(newSelect);
 		self.$opts = self.$newEl.find('.jsSelectOpts');
-		self.renderChoice(current);
 		self.$current = self.$newEl.find('.selected');
+		self.renderChoice(current);
 		self.$newEl.attr('tabindex', 0)
 			.bind('blur', function() {
 				self.hide();
@@ -48,10 +48,8 @@
 				if (!self.shown) self.show();
 				else self.hide();
 			});
-		self.$opts.delegate('li.jsSelectOpt', 'activate', function() {
+		self.$opts.delegate('li.jsSelectOpt', 'click', function() {
 				self.select($(this));
-			}).delegate('li.jsSelectOpt', 'click', function() {
-				$(this).trigger('activate');
 				self.hide();
 			});
 		$el.before(self.$newEl);
@@ -62,22 +60,22 @@
 			this.$current = $dest;
 		} else if ($dest === 'previous') {
 			if (this.$opts.find('>li').first().hasClass('selected')) return false;
-			this.$current = this.$newEl.find('.selected').prev();
+			this.$current = this.$opts.find('.selected').prev();
 		} else if ($dest === 'next') {
 			if (this.$opts.find('>li').last().hasClass('selected')) return false;
-			this.$current = this.$newEl.find('.selected').next();
+			this.$current = this.$opts.find('.selected').next();
 		}
 		var val = this.$current.attr('data-value');
-		this.renderChoice(val);
+		this.renderChoice();
 		$(this.element).val(val).trigger('change');
 	};
 
-	Plugin.prototype.renderChoice = function(value) {
-		var $newSelected = this.$newEl.find('.selected').removeClass('selected')
-			.end().find('[data-value="'+value+'"]'),
-			newHtml = $newSelected.addClass('selected').html(),
-			newClasses = 'showSelect ' + $newSelected[0].className;
+	Plugin.prototype.renderChoice = function() {
+		var newHtml, newClasses;
 
+		this.$newEl.find('.selected').removeClass('selected');
+		newHtml = this.$current.addClass('selected').html();
+		newClasses = 'showSelect ' + this.$current[0].className;
 		this.$newEl.find('>div').attr('class', newClasses).html(newHtml);
 	};
 
