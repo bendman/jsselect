@@ -73,6 +73,7 @@
 	Plugin.prototype.renderChoice = function() {
 		var newHtml, newClasses;
 
+		if (!this.$current.length) return false;
 		this.$newEl.find('.selected').removeClass('selected');
 		newHtml = this.$current.addClass('selected').html();
 		newClasses = 'showSelect ' + this.$current[0].className;
