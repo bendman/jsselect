@@ -20,7 +20,7 @@
 	}
 
 	Plugin.prototype.init = function() {
-		var newSelect = '<div class="jsselect"><div class="showSelect"></div>',
+		var newSelect = '<div class="jsselect"><div class="showSelect"><span></span></div>',
 			newOptions = '<ul class="jsSelectOpts">',
 			self = this,
 			current;
@@ -76,8 +76,8 @@
 		if (!this.$current.length) return false;
 		this.$newEl.find('.selected').removeClass('selected');
 		newHtml = this.$current.addClass('selected').html();
-		newClasses = 'showSelect ' + this.$current[0].className;
-		this.$newEl.find('>div').attr('class', newClasses).html(newHtml);
+		newClasses = this.$current[0].className;
+		this.$newEl.find('.showSelect > span').attr('class', newClasses).html(newHtml);
 	};
 
 	Plugin.prototype.show = function() {

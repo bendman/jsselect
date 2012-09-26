@@ -29,7 +29,8 @@
 .jsselect .jsSelectOpts>li.selected {
 	background-color:#dde;
 }
-.jsselect .showSelect {
+.jsselect .showSelect span {
+	display:block;
 	font-weight:bold;
 	padding:9px;
 	background-color:#eee;
@@ -38,7 +39,7 @@
 	border-radius:2px;
 	text-indent:38px;
 }
-.jsselect:focus .showSelect {
+.jsselect:focus .showSelect span {
 	border-color:#777;
 	background-color:#dfdfdf;
 }
