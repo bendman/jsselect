@@ -48,7 +48,7 @@
 				if (!self.shown) self.show();
 				else self.hide();
 			});
-		self.$opts.delegate('li.jsSelectOpt', 'click', function() {
+		self.$opts.delegate('li.jsSelectOpt', 'mousedown', function() {
 				self.select($(this));
 				self.hide();
 			});
