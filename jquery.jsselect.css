@@ -16,7 +16,7 @@
 	position:absolute;
 	border:1px solid #ccc;
 	border-top:none;
-	box-shadow:0px 1px 5px #ddd;
+	box-shadow:0 1px 5px #ddd;
 	list-style:none;
 }
 .jsselect .jsSelectOpts>li {
@@ -31,10 +31,12 @@
 }
 .jsselect .showSelect {
 	font-weight:bold;
-	padding:5px;
+	padding:9px;
 	background-color:#eee;
+	background-position:4px center;
 	border:1px solid #ccc;
 	border-radius:2px;
+	text-indent:38px;
 }
 .jsselect:focus .showSelect {
 	border-color:#777;

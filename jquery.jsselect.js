@@ -81,7 +81,7 @@
 
 	Plugin.prototype.show = function() {
 		this.shown = true;
-		this.$opts.slideDown('fast');
+		this.$opts.slideDown(100);
 	};
 
 	Plugin.prototype.hide = function() {
